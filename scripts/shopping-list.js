@@ -1,5 +1,5 @@
 /* global store, $ */
-
+/* eslint-disable strict */
 // eslint-disable-next-line no-unused-vars
 const shoppingList = (function(){
 
