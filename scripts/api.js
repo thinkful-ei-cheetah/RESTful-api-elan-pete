@@ -22,13 +22,28 @@ const api = (function () {
             },
             body: jsonItem
         };
-        return fetch(`${BASE_URL}/items`, options);
-        
+        return fetch(`${BASE_URL}/items`, options);   
     }
+
+    function updateItem(id, updateData){
+        const dataString = JSON.stringify(updateData);
+        const options = {
+            method: 'PATCH',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: dataString
+        }
+        return fetch(`${BASE_URL}/items/${id}`,options);
+
+    }
+
+
     return {
         // BASE_URL,
         getItems,
-        createItem
+        createItem,
+        updateItem
     };
 }());
 
