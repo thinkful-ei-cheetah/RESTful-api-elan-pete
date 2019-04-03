@@ -62,16 +62,22 @@ const shoppingList = (function(){
   
   
   function handleNewItemSubmit() {
+    
     $('#js-shopping-list-form').submit(function (event) {
       event.preventDefault();
       const newItemName = $('.js-shopping-list-entry').val();
+      $('.js-shopping-list-entry').attr('placeholder', 'tell me another');
       $('.js-shopping-list-entry').val('');
       api.createItem(newItemName)
         // .then(res => res.json())
         .then((newItem) => {
           store.addItem(newItem);
           render();
-        });
+        })
+        .catch(error => $('.js-shopping-list-entry').attr('placeholder',`Error: ${error.message}`));
+          //alert(`Error: ${error.message}`));
+          //alert(error.message) );
+          //console.error(error.message) );
     });
   } 
   
