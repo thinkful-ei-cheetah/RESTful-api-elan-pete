@@ -14,8 +14,7 @@ const store = (function(){
   const findAndUpdate = function(id, newData) {
     // if ( validateName(id) )
     let item = this.findById(id);
-    console.log(item);
-    return Object.assign(newData, item);
+    return Object.assign(item, newData);
     
   }
 
