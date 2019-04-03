@@ -1,4 +1,4 @@
-/* global store, $ */
+/* global store, $, api */
 /* eslint-disable strict */
 // eslint-disable-next-line no-unused-vars
 const shoppingList = (function(){
@@ -106,8 +106,11 @@ const shoppingList = (function(){
       event.preventDefault();
       const id = getItemIdFromElement(event.currentTarget);
       const itemName = $(event.currentTarget).find('.shopping-item').val();
-      store.findAndUpdateName(id, itemName);
-      store.setItemIsEditing(id, false);
+      const nameObj = { name : itemName};
+      api.updateItem(id,nameObj);
+      console.log(nameObj);
+      store.findAndUpdate(id, nameObj);
+      // store.setItemIsEditing(id, false);
       render();
     });
   }

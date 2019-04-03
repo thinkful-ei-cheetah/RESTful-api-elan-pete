@@ -16,7 +16,7 @@ const store = (function(){
     let item = this.findById(id);
     return Object.assign(item, newData);
     
-  }
+  };
 
   // const findAndToggleChecked = function(id) {
   //   const item = this.findById(id);

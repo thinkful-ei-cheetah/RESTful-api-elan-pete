@@ -33,7 +33,7 @@ const api = (function () {
             'Content-Type': 'application/json'
             },
             body: dataString
-        }
+        };
         return fetch(`${BASE_URL}/items/${id}`,options);
 
     }
