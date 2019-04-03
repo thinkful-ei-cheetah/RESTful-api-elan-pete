@@ -12,16 +12,12 @@ $(document).ready(function() {
   //   })
   //   .then(res => res.json())
   //   .then(() => console.log('updated!'));
- // #test for api.updateItem
+  // #test for api.updateItem
 
-    api.getItems()
+  api.getItems()
     .then(res => res.json())
     .then((items) => {
       items.forEach((item) => store.addItem(item));
-      // const item = store.items[0];
-      // console.log('current name: ' + item.name);
-      // store.findAndUpdate(item.id, { name: 'kungfoo' });
-      // console.log('new name: ' + item.name);
       shoppingList.render();
     });
  

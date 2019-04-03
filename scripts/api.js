@@ -5,11 +5,31 @@
 const api = (function () {
     const BASE_URL = 'https://thinkful-list-api.herokuapp.com/elan-pete';
 
-    function getItems(){
-        return fetch(`${BASE_URL}/items`);
 
-        // return Promise.resolve('A successful response!');
+    function apiFetch(...args) {
+        let error;
+        return fetch(...args)
+            .then(res => {
+                if (!res.ok) {
+                    error = { code: res.status };
+                }
+            return res.json();
+            })
+
+            .then(data => {
+                if(error) {
+                    error.message = data.message;
+                    return Promise.reject(error);
+                }
+            
+            return data;
+            });
     }
+
+    function getItems(){
+        return apiFetch(`${BASE_URL}/items`);
+    }
+
     function createItem(name) {
         let newItem = {
             name
@@ -22,7 +42,7 @@ const api = (function () {
             },
             body: jsonItem
         };
-        return fetch(`${BASE_URL}/items`, options);   
+        return apiFetch(`${BASE_URL}/items`, options);   
     }
 
     function updateItem(id, updateData){
@@ -34,16 +54,28 @@ const api = (function () {
             },
             body: dataString
         };
-        return fetch(`${BASE_URL}/items/${id}`,options);
+        return apiFetch(`${BASE_URL}/items/${id}`,options);
 
     }
+
+    function deleteItem(id) {
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'aplication/json'
+            }
+        };
+        return apiFetch(`${BASE_URL}/items/${id}`, options);
+    }
+    
 
 
     return {
         // BASE_URL,
         getItems,
         createItem,
-        updateItem
+        updateItem,
+        deleteItem
     };
 }());
 
