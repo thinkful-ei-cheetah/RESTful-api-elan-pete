@@ -10,9 +10,25 @@ const api = (function () {
 
         // return Promise.resolve('A successful response!');
     }
+    function createItem(name) {
+        let newItem = {
+            name
+        };
+        const jsonItem = JSON.stringify(newItem);
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: jsonItem
+        };
+        return fetch(`${BASE_URL}/items`, options);
+        
+    }
     return {
         // BASE_URL,
         getItems,
+        createItem
     };
 }());
 
