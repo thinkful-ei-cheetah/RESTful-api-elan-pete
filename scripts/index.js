@@ -15,7 +15,7 @@ $(document).ready(function() {
   // #test for api.updateItem
 
   api.getItems()
-    .then(res => res.json())
+    //.then(res => res.json())
     .then((items) => {
       items.forEach((item) => store.addItem(item));
       shoppingList.render();
